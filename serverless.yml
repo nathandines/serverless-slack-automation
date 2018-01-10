@@ -1,0 +1,19 @@
+service: slack-automation
+# frameworkVersion: 1.25.0
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ap-southeast-2
+  apiKeys:
+    - zapierApiKey-${opt:stage, self:provider.stage}
+  environment:
+    SLACK_AUTH_TOKEN: ${env:SLACK_AUTH_TOKEN}
+
+functions:
+  slackJoin:
+    handler: handler.join
+    events:
+      - http:
+          path: slack/join
+          method: post
