@@ -6,7 +6,7 @@ provider:
   runtime: nodejs6.10
   region: ap-southeast-2
   apiKeys:
-    - zapierApiKey-${opt:stage, self:provider.stage}
+    - ${opt:stage, self:provider.stage}-${self:service}
   environment:
     SLACK_AUTH_TOKEN: ${env:SLACK_AUTH_TOKEN}
 
